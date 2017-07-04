@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -98,6 +98,9 @@
                                                     </constraints>
                                                     <state key="normal" title="Button" image="retweet-icon"/>
                                                     <state key="selected" image="retweet-icon-green"/>
+                                                    <connections>
+                                                        <action selector="pressRetweet:" destination="U1g-kw-izy" eventType="touchUpInside" id="acM-nM-brM"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TwitterLogoBlue" translatesAutoresizingMaskIntoConstraints="NO" id="r9R-oy-brC">
                                                     <rect key="frame" x="8" y="8" width="50" height="50"/>
@@ -140,6 +143,9 @@
                                                     </constraints>
                                                     <state key="normal" title="Button" image="favor-icon"/>
                                                     <state key="selected" image="favor-icon-red"/>
+                                                    <connections>
+                                                        <action selector="pressLike:" destination="U1g-kw-izy" eventType="touchUpInside" id="Xuc-J8-y3y"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L71-3b-KFQ">
                                                     <rect key="frame" x="111" y="75" width="53" height="21"/>
@@ -176,7 +182,16 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="aliasLabel" destination="2xa-Vy-SiS" id="l6H-nw-Opb"/>
+                                            <outlet property="likeButton" destination="WLs-6l-YzI" id="aXS-yD-z2d"/>
+                                            <outlet property="likeCount" destination="5em-Xf-cWp" id="p1Y-ql-PJG"/>
+                                            <outlet property="profileImageView" destination="r9R-oy-brC" id="vOR-Ls-NUg"/>
+                                            <outlet property="replyButton" destination="6n3-QG-C1I" id="gki-h0-Qwd"/>
+                                            <outlet property="retweetButton" destination="FCb-kn-gdQ" id="ivC-Gv-YUO"/>
+                                            <outlet property="retweetLabel" destination="L71-3b-KFQ" id="uqs-a4-1g0"/>
+                                            <outlet property="timeStampLabel" destination="qhA-p4-D3A" id="TsB-Li-kc5"/>
                                             <outlet property="tweetTextLabel" destination="epC-Fs-Q5Z" id="ZLP-IG-Wsf"/>
+                                            <outlet property="usernameLabel" destination="cBy-Z8-JtP" id="cjy-y3-mEw"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
