@@ -29,6 +29,10 @@ class TweetCell: UITableViewCell {
     
     var tweet: Tweet! {
         didSet {
+            usernameLabel.text = tweet.user.name
+            aliasLabel.text = tweet.user.screenName
+            timeStampLabel.text = tweet.createdAtString
+            
             // Set the profile picture
             let profpicURL = tweet.user.profilePictureUrl
             profileImageView.af_setImage(withURL: profpicURL!)

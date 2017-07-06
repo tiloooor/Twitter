@@ -23,6 +23,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var tweetTextView: UITextView!
     @IBOutlet weak var sendTweetButton: UIButton!
+    @IBOutlet weak var nameLabel: UILabel!
     
     
     
@@ -31,9 +32,18 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //change the shape of the share buttons
+        sendTweetButton.layer.cornerRadius = 8; // this value vary as per your desire
+        sendTweetButton.clipsToBounds = true;
+        
+        
         // Generate the profile picture 
         let profilepicURL = User.current?.profilePictureUrl
         profileImageView.af_setImage(withURL: profilepicURL!)
+        
+        //Generate user info
+        nameLabel.text = User.current?.name
+        usernameLabel.text = User.current?.screenName
 
         
         //tweetTextView.becomeFirstResponder()
@@ -63,6 +73,10 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         
     }
     
+
+    @IBAction func tapToClose(_ sender: Any) {
+         self.dismiss(animated: true, completion: nil)
+    }
  
    
  
