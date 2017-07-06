@@ -57,7 +57,7 @@
         <!--Home Timeline-->
         <scene sceneID="5vf-Kh-7ye">
             <objects>
-                <viewController storyboardIdentifier="TimelineViewController" id="5YO-Vh-39k" customClass="TimelineViewController" customModule="twitter_alamofire_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeTimelineViewController" id="5YO-Vh-39k" customClass="TimelineViewController" customModule="twitter_alamofire_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yS8-DC-Odq"/>
                         <viewControllerLayoutGuide type="bottom" id="z6n-U4-hAr"/>
@@ -83,8 +83,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likecount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5em-Xf-cWp">
-                                                    <rect key="frame" x="209" y="76" width="69.5" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5em-Xf-cWp">
+                                                    <rect key="frame" x="209" y="86.5" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
