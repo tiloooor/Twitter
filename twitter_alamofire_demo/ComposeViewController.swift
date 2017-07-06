@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import AlamofireImage
+//import RSKPlaceholderTextView
+
 
 protocol ComposeViewControllerDelegate: class {
     func didPostTweet(post: Tweet)
@@ -27,6 +30,11 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Generate the profile picture 
+        let profilepicURL = User.current?.profilePictureUrl
+        profileImageView.af_setImage(withURL: profilepicURL!)
+
         
         //tweetTextView.becomeFirstResponder()
         tweetTextView.delegate = self
@@ -54,6 +62,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         }
         
     }
+    
+ 
    
  
     

@@ -11,16 +11,22 @@ import Foundation
 class User {
     
     var name: String
-    var profilePictureUrl: String
+    var profilePicString: String?
+    var profilePictureUrl: URL?
     var dictionary: [String: Any]?
+    var screenName: String?
+    
     
     private static var _current: User?
     
     init(dictionary: [String: Any]) {
         self.dictionary = dictionary
         name = dictionary["name"] as! String
-        profilePictureUrl = dictionary["profile_image_url_https"] as! String
-    }
+        screenName = dictionary["screen_name"] as? String
+        profilePicString = dictionary["profile_image_url_https"] as? String
+        profilePictureUrl = URL(string: profilePicString!)
+        }
+    
     
     static var current: User? {
         get {

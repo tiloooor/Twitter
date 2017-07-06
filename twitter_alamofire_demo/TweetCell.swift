@@ -29,7 +29,9 @@ class TweetCell: UITableViewCell {
     
     var tweet: Tweet! {
         didSet {
-            //profileImageView.af_setImage(withURL: url)
+            // Set the profile picture
+            let profpicURL = tweet.user.profilePictureUrl
+            profileImageView.af_setImage(withURL: profpicURL!)
             
             // Check if Tweet is a retweet
             if let ogTweet = tweet.retweetedStatus {
