@@ -17,6 +17,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Load title bar photo
+        navigationItem.titleView = UIImageView(image: UIImage(named: "nav-image"))
+        
+        
+        
+        
         tableView.dataSource = self
         tableView.delegate = self
         

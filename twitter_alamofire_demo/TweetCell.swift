@@ -8,7 +8,7 @@
 
 import UIKit
 import AlamofireImage
-
+import DateToolsSwift
 
 class TweetCell: UITableViewCell {
     
@@ -24,11 +24,16 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var replyButton: UIButton!
     
+
     
 
     
     var tweet: Tweet! {
         didSet {
+            
+            profileImageView.layer.cornerRadius = 8; // this value vary as per your desire
+            profileImageView.clipsToBounds = true;
+            
             usernameLabel.text = tweet.user.name
             aliasLabel.text = tweet.user.screenName
             timeStampLabel.text = tweet.createdAtString
@@ -36,6 +41,8 @@ class TweetCell: UITableViewCell {
             // Set the profile picture
             let profpicURL = tweet.user.profilePictureUrl
             profileImageView.af_setImage(withURL: profpicURL!)
+            
+            
             
             // Check if Tweet is a retweet
             if let ogTweet = tweet.retweetedStatus {
@@ -45,8 +52,13 @@ class TweetCell: UITableViewCell {
                 print("This is an original tweet!")
                 reloadData(with: tweet)
             }
+            
         }
     }
+    
+
+    
+    
     
     func reloadData(with tweet: Tweet) {
         tweetTextLabel.text = tweet.text
@@ -68,6 +80,9 @@ class TweetCell: UITableViewCell {
         
     }
     
+    
+    
+    
     func makeRetweet(_ tweet: Tweet) {
         // Update model
         tweet.retweeted = true
@@ -78,6 +93,7 @@ class TweetCell: UITableViewCell {
         APIManager.shared.retweetTweet(with: tweet, completion: { (tweet: Tweet?, error: Error?) in
             if let tweet = tweet {
                 self.tweet = tweet
+                print("Successful retweet: \(tweet.text)")
             } else if let error = error {
                 print("Error getting home timeline: " + error.localizedDescription)
             }
@@ -85,23 +101,27 @@ class TweetCell: UITableViewCell {
     }
     
     
+    func unRetweet(_ tweet: Tweet) {
+        // Update model
+        tweet.retweeted = false
+        tweet.retweetCount = tweet.favoriteCount - 1
+        // Update UI
+        reloadData(with: tweet)
+        // Update API
+        APIManager.shared.unretweet(tweet, completion: { (tweet: Tweet?, error: Error?) in
+            if let tweet = tweet {
+                self.tweet = tweet
+                print("Successful retweet: \(tweet.text)")
+            } else if let error = error {
+                print("Error getting home timeline: " + error.localizedDescription)
+            }
+        })
         
-        
-//        if retweetButton.isSelected {
-//            if let ogTweet = tweet.retweetedStatus {
-//                makeRetweet(ogTweet)
-//            } else {
-//                makeRetweet(tweet)
-//            }
-//        } else {
-//            if let ogTweet = tweet.retweetedStatus {
-//                makeRetweet(ogTweet)
-//            } else {
-//                makeRetweet(tweet)
-//            }
-//        }
-        
-        
+     }
+    
+    
+    
+    
 
     
     func unfavorite(_ tweet: Tweet) {
@@ -135,7 +155,7 @@ class TweetCell: UITableViewCell {
             }
         })
     }
-
+    
     
     @IBAction func pressLike(_ sender: Any) {
         if likeButton.isSelected {
@@ -154,62 +174,80 @@ class TweetCell: UITableViewCell {
     }
     
     
+/****************Actual*******************/
     
-    //    @IBAction func pressLike(_ sender: Any) {
-    //        if likeButton.isSelected {
-    //            likeButton.isSelected = false
-    //            tweet.favorited = false
-    //            tweet.favoriteCount! -= 1
-    //            self.likeCount.text = String(tweet.favoriteCount!)
-    //            print("liked")
-    //        } else {
-    //            likeButton.isSelected = true
-    //            tweet.favorited = true
-    //            tweet.favoriteCount! += 1
-    //            self.likeCount.text = String(tweet.favoriteCount!)
-    //            print("unliked")
-    //
-    //            APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
-    //                if let  error = error {
-    //                    print("Error favoriting tweet: \(error.localizedDescription)")
-    //                } else if let tweet = tweet {
-    //                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
-    //                }
-    //            }
-    //
-    //        }
-    //
-    //    }
-    //
+//    func unfavorite(_ tweet: Tweet) {
+//        // Update model
+//        tweet.favorited = false
+//        tweet.favoriteCount = tweet.favoriteCount - 1
+//        // Update UI
+//        reloadData(with: tweet)
+//        // Update API
+//        APIManager.shared.unfavorite(tweet, completion: { (tweet, error) in
+//            if let error = error {
+//                print("Error unfavoriting: \(error.localizedDescription)")
+//            } else if let tweet = tweet {
+//                print("Successful un-favorite: \(tweet.text)")
+//            }
+//        })
+//
+//    }
+//    
+//    
+//    func favorite(_ tweet: Tweet) {
+//        // Update model
+//        tweet.favorited = true
+//        tweet.favoriteCount = tweet.favoriteCount + 1
+//        // Update UI
+//        reloadData(with: tweet)
+//        // Update API
+//        APIManager.shared.favorite(tweet, completion: { (tweet, error) in
+//            if let error = error {
+//                print("Error unfavoriting: \(error.localizedDescription)")
+//            } else if let tweet = tweet {
+//                print("Successful favorite: \(tweet.text)")
+//            }
+//        })
+//        
+//    }
+//
+//    
+//    @IBAction func pressLike(_ sender: Any) {
+//        if likeButton.isSelected {
+//            if let ogTweet = tweet.retweetedStatus {
+//                unfavorite(ogTweet)
+//            } else {
+//                unfavorite(tweet)
+//            }
+//        } else {
+//            if let ogTweet = tweet.retweetedStatus {
+//                favorite(ogTweet)
+//            } else {
+//                favorite(tweet)
+//            }
+//        }
+//    }
+//    
     
-    //        if likeButton.isSelected {
-    //            likeButton.isSelected = false
-    //            tweet.favorited = false
-    //            tweet.favoriteCount! -= 1
-    //            self.likeCount.text = String(tweet.favoriteCount!)
-    //        } else {
-    //            likeButton.isSelected = true
-    //            tweet.favorited = true
-    //            tweet.favoriteCount += 1
-    //            self.likeCount.text = String(tweet.favoriteCount!)
-    //
-    ////            APIManager.shared.likeTweet(with: tweet, completion: { (tweet: Tweet?, error: Error?) in
-    ////                if let tweet = tweet {
-    ////                    self.tweet = tweet
-    ////                } else if let error = error {
-    ////                    print("Error getting home timeline: " + error.localizedDescription)
-    ////                }
-    ////
-    ////            })
-    //
+
     
+    @IBAction func pressRetweet(_ sender: Any) {
+        if retweetButton.isSelected {
+            if let ogTweet = tweet.retweetedStatus {
+                unRetweet(ogTweet)
+            } else {
+                unRetweet(tweet)
+            }
+        } else {
+            if let ogTweet = tweet.retweetedStatus {
+                makeRetweet(ogTweet)
+            } else {
+                makeRetweet(tweet)
+            }
+        }
+    }
     
-    
-    
-    
-    
-    
-    
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
