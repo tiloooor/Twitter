@@ -8,21 +8,28 @@
 
 import UIKit
 
-protocol ComposeViewControllerDelegate {
-    func did(post: Tweet)
+protocol ComposeViewControllerDelegate: class {
+    func didPostTweet(post: Tweet)
 }
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITextViewDelegate {
     
     // MARK: Properties
+
+    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var tweetTextView: UITextView!
+    @IBOutlet weak var sendTweetButton: UIButton!
     
     
-    var delegate: ComposeViewControllerDelegate?
+    
+    weak var delegate: ComposeViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //tweetTextView.becomeFirstResponder()
+        tweetTextView.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -34,18 +41,24 @@ class ComposeViewController: UIViewController {
     
     
     @IBAction func didTapPost(_ sender: Any) {
-        APIManager.shared.composeTweet(with: "This is my tweet 😀") { (tweet, error) in
+        let tweetText = tweetTextView.text
+        
+        APIManager.shared.composeTweet(with: tweetText!) { (tweet, error) in
             if let error = error {
                 print("Error composing Tweet: \(error.localizedDescription)")
             } else if let tweet = tweet {
-                self.delegate?.did(post: tweet)
+                self.delegate?.didPostTweet(post: tweet)
                 print("Compose Tweet Success!")
+                self.dismiss(animated: true, completion: nil)
             }
         }
+        
     }
+   
+ 
     
-
-    /*
+/*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -53,6 +66,6 @@ class ComposeViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+*/
 
 }

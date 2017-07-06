@@ -50,6 +50,27 @@ class APIManager: SessionManager {
         }
     }
     
+    
+    func getCurrentAccount(completion: @escaping (User?, Error?) -> ()) {
+        request(URL(string: "https://api.twitter.com/1.1/account/verify_credentials.json")!)
+            .validate()
+            .responseJSON { response in
+                
+                // Check for errors
+                guard response.result.isSuccess else {
+                    completion(nil, response.result.error)
+                    return
+                }
+                
+                guard let userDictionary = response.result.value as? [String: Any] else {
+                    completion(nil, JSONError.parsing("Unable to create user dictionary"))
+                    return
+                }
+                completion(User(dictionary: userDictionary), nil)
+        }
+    }
+    
+    
     // MARK: Retweet
     func retweetTweet(with tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
         let paramters = ["id": tweet.id]
@@ -153,6 +174,7 @@ class APIManager: SessionManager {
         }
     }
     
+    // MARK: TODO: Compose Tweet
     func composeTweet(with text: String, completion: @escaping (Tweet?, Error?) -> ()) {
         let urlString = "https://api.twitter.com/1.1/statuses/update.json"
         let parameters = ["status": text]
@@ -163,7 +185,8 @@ class APIManager: SessionManager {
         }) { (error: OAuthSwiftError) in
             completion(nil, error.underlyingError)
         }
-    }
+    }//close composeTweet
+
 
     
     
@@ -184,25 +207,7 @@ class APIManager: SessionManager {
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
     }
     
-    func getCurrentAccount(completion: @escaping (User?, Error?) -> ()) {
-        request(URL(string: "https://api.twitter.com/1.1/account/verify_credentials.json")!)
-            .validate()
-            .responseJSON { response in
-                
-                // Check for errors
-                guard response.result.isSuccess else {
-                    completion(nil, response.result.error)
-                    return
-                }
-                
-                guard let userDictionary = response.result.value as? [String: Any] else {
-                    completion(nil, JSONError.parsing("Unable to create user dictionary"))
-                    return
-                }
-                completion(User(dictionary: userDictionary), nil)
-        }
-    }
-        
+    
     func getHomeTimeLine(completion: @escaping ([Tweet]?, Error?) -> ()) {
 
         // This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
