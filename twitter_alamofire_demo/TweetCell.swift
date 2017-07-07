@@ -80,7 +80,7 @@ class TweetCell: UITableViewCell {
                 //if there's no image media, hide the image view and shrink the constraint
             else {
                 mediaImageView.isHidden = true
-                fromButtonToTop.constant = 4
+                fromButtonToTop.constant = 2
             }
             
         }
