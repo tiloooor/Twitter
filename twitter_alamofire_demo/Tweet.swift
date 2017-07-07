@@ -20,6 +20,8 @@ class Tweet {
     var user: User // Contains name, screenname, etc. of tweet author
     var createdAtString: String // Display date
     var retweetedStatus: Tweet? // indicates the tweet is a retweet
+    var displayURL: URL?
+
     
     // MARK: - Create initializer with dictionary
     init(dictionary: [String: Any]) {
@@ -32,6 +34,15 @@ class Tweet {
         
         if let retweetDictionary = dictionary["retweeted_status"] as? [String: Any] {
             self.retweetedStatus = Tweet(dictionary: retweetDictionary)
+            
+            //getting the photo out of the tweet body
+            let entities = dictionary["entities"] as! [String: Any]
+            if let media = entities["media"] as? [[String: Any]] {
+                let firstMediaItem = media[0]
+                let displayURLString = firstMediaItem["media_url_https"] as! String
+                displayURL = URL(string: displayURLString)
+            }
+            
         }
         
         let user = dictionary["user"] as! [String: Any]

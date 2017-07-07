@@ -20,9 +20,11 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var timeStampLabel: UILabel!
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var retweetLabel: UILabel!
+    @IBOutlet weak var mediaImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var fromButtonToTop: NSLayoutConstraint!
     
 
     
@@ -51,6 +53,18 @@ class TweetCell: UITableViewCell {
             } else {
                 print("This is an original tweet!")
                 reloadData(with: tweet)
+            }
+            
+            //if there's image media in the tweet, display it
+            if let url = tweet.displayURL {
+                mediaImageView.isHidden = false
+                mediaImageView.af_setImage(withURL: url)
+                fromButtonToTop.constant = 400
+            }
+                //if there's no image media, hide the image view and shrink the constraint
+            else {
+                mediaImageView.isHidden = true
+                fromButtonToTop.constant = 4
             }
             
         }
