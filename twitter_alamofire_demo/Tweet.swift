@@ -26,7 +26,8 @@ class Tweet {
     // MARK: - Create initializer with dictionary
     init(dictionary: [String: Any]) {
         id = dictionary["id"] as! Int64
-        text = dictionary["text"] as! String
+        // don't know if this is right
+        text = dictionary["text"] as! String 
         favoriteCount = dictionary["favorite_count"] as! Int
         favorited = dictionary["favorited"] as! Bool
         retweetCount = dictionary["retweet_count"] as! Int

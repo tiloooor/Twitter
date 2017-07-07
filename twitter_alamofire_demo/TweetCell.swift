@@ -9,11 +9,23 @@
 import UIKit
 import AlamofireImage
 import DateToolsSwift
+import ActiveLabel
+
+
+
+protocol TweetCellDelegate: class {
+    // Add required methods the delegate needs to implement
+    func tweetCell(_ tweetCell: TweetCell, didTap user: User)
+}
+
+
 
 class TweetCell: UITableViewCell {
     
     // MARK: Properties
-    @IBOutlet weak var tweetTextLabel: UILabel!
+    
+
+    @IBOutlet weak var tweetTextLabel: ActiveLabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var aliasLabel: UILabel!
@@ -26,13 +38,18 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var fromButtonToTop: NSLayoutConstraint!
     
-
-    
-
+    weak var delegate: TweetCellDelegate?
+ 
     
     var tweet: Tweet! {
         didSet {
             
+            //Active label
+            tweetTextLabel.enabledTypes = [.mention, .hashtag, .url]
+            tweetTextLabel.text = tweet.text
+            tweetTextLabel.handleURLTap { (url) in
+                UIApplication.shared.open(url)
+            }
             profileImageView.layer.cornerRadius = 8; // this value vary as per your desire
             profileImageView.clipsToBounds = true;
             
@@ -54,7 +71,6 @@ class TweetCell: UITableViewCell {
                 print("This is an original tweet!")
                 reloadData(with: tweet)
             }
-            
             //if there's image media in the tweet, display it
             if let url = tweet.displayURL {
                 mediaImageView.isHidden = false
@@ -69,6 +85,27 @@ class TweetCell: UITableViewCell {
             
         }
     }
+    
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    
+    }
+    
+    
+
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
+    
+    
+
+    
     
 
     
@@ -262,16 +299,6 @@ class TweetCell: UITableViewCell {
     }
     
 
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
+
     
 }
