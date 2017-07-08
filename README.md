@@ -1,7 +1,7 @@
 # Twitter
 CodePath twitter clone 
 
-# Project 4 - *Name of App Here*
+# Project 4 - *Twitter*
 
 **Name of your app** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
@@ -58,7 +58,6 @@ Here's a walkthrough of implemented user stories:
 <img src= 'http://imgur.com/AO6Di09.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 <img src= 'http://imgur.com/Gcgirb0.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 <img src= 'http://imgur.com/CdZk675.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-<img src= 'http://imgur.com/TzbmQBO.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
 
