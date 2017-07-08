@@ -56,9 +56,9 @@ Here's a walkthrough of implemented user stories:
 <img src= 'http://imgur.com/Tq7CX8g.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 <img src= 'http://imgur.com/Jj22nfy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 <img src= 'http://imgur.com/AO6Di09.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-<img src= 'http://imgur.com/Gcgirb0' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-<img src= 'http://imgur.com/CdZk675' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-<img src= 'http://imgur.com/TzbmQBO' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src= 'http://imgur.com/Gcgirb0.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src= 'http://imgur.com/CdZk675.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src= 'http://imgur.com/TzbmQBO.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
 
