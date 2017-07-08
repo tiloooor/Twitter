@@ -51,7 +51,7 @@ class DetailViewController: UIViewController {
         tweetText.handleURLTap { (url) in
             UIApplication.shared.open(url)
         }
-        tweetText.sizeToFit()
+  
         
         let profpicURL = tweet.user.profilePictureUrl
         profileImageView.af_setImage(withURL: profpicURL!)
