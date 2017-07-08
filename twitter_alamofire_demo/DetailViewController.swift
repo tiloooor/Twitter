@@ -72,10 +72,10 @@ class DetailViewController: UIViewController {
         if let url = tweet.displayURL {
             mediaImageView.isHidden = false
             mediaImageView.af_setImage(withURL: url)
-            fromButtonToTop.constant = 200
+            //fromButtonToTop.constant = 200
         } else {
             mediaImageView.isHidden = true
-            fromButtonToTop.constant = 2
+            //fromButtonToTop.constant = 2
         }
         
         }

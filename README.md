@@ -24,13 +24,13 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] Tweet Details Page: User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
+- [X] Tweet Details Page: User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
 - [ ] User can view their profile in a profile tab
 - [ ] User should display the relative timestamp for each tweet "8m", "7h"
 - [x] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
-- [ ] Links in tweets are clickable
+- [x] Links in tweets are clickable
 - [ ] User can tap the profile image in any tweet to see another user's profile
-- [ ] Contains the user header view: picture and tagline
+- [x] Contains the user header view: picture and tagline
 - [ ] Contains a section with the users basic stats: # tweets, # following, # followers
 - [ ] Profile view should include that user's timeline
 - [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
@@ -46,8 +46,8 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. Stack View
+2. Dynamic constraints
 
 ## Video Walkthrough
 
