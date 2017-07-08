@@ -9,6 +9,11 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    // MARK: Properties
+    
+    @IBOutlet weak var coverImageView: UIImageView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

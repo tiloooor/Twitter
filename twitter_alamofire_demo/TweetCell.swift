@@ -44,13 +44,15 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             
+            
+            
             //Active label
             tweetTextLabel.enabledTypes = [.mention, .hashtag, .url]
             tweetTextLabel.text = tweet.text
             tweetTextLabel.handleURLTap { (url) in
                 UIApplication.shared.open(url)
             }
-            profileImageView.layer.cornerRadius = 8; // this value vary as per your desire
+            profileImageView.layer.cornerRadius = 20; // this value vary as per your desire
             profileImageView.clipsToBounds = true;
             
             usernameLabel.text = tweet.user.name
